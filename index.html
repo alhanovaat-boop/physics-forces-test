@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Физика · Силы в механике</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="molecule m1">⚛</span>
+    <span class="molecule m2">⚛</span>
+    <span class="molecule m3">⚡</span>
+    <span class="molecule m4">⚛</span>
+  </div>
+
+  <div id="warn-banner" class="warn" hidden>
+    ⚠ База данных не настроена. Вставьте SUPABASE_URL и SUPABASE_ANON_KEY в файл <b>config.js</b>.
+  </div>
+
+  <main class="app">
+    <!-- ЭКРАН 1: СТАРТ -->
+    <section id="screen-start" class="screen">
+      <div class="logo">⚛</div>
+      <h1 class="title">ФИЗИКА</h1>
+      <p class="subtitle">Проверим знания: Силы в механике</p>
+      <div class="card">
+        <label class="field-label" for="student-name">Имя или номер студента</label>
+        <input type="text" id="student-name" class="input" placeholder="Например: Иванов или 105" autocomplete="off">
+        <button id="btn-start" class="btn btn-primary">НАЧАТЬ ТЕСТ</button>
+        <p class="hint">10 вопросов · по одному ответу на вопрос</p>
+      </div>
+    </section>
+
+    <!-- ЭКРАН 2: ВОПРОС -->
+    <section id="screen-quiz" class="screen" hidden>
+      <div class="progress"><div id="progress-fill" class="progress-fill"></div></div>
+      <div class="q-meta">
+        <span id="q-number">Вопрос 1 / 10</span>
+        <span class="chip-live">⚛ МКТ</span>
+      </div>
+      <div id="question-card" class="card question-card">
+        <div id="question-text" class="question-text"></div>
+        <div id="options" class="options"></div>
+        <button id="btn-answer" class="btn btn-primary" disabled>ОТВЕТИТЬ</button>
+        <p id="quiz-error" class="error" hidden></p>
+      </div>
+    </section>
+
+    <!-- ЭКРАН 3: РЕЗУЛЬТАТ ВОПРОСА -->
+    <section id="screen-result" class="screen" hidden>
+      <div class="badge-ok">✔ Ответ принят</div>
+      <div id="correct-info" class="correct-info" hidden></div>
+      <div class="card">
+        <h3 class="section-title">📊 Результаты группы</h3>
+        <div id="group-stats" class="stats"></div>
+        <div id="answered-count" class="answered-count"></div>
+      </div>
+      <button id="btn-next" class="btn btn-primary">СЛЕДУЮЩИЙ ВОПРОС</button>
+    </section>
+
+    <!-- ЭКРАН 4: ФИНАЛ -->
+    <section id="screen-final" class="screen" hidden>
+      <div class="logo">🎉</div>
+      <h2 class="title small">ТЕСТ ЗАВЕРШЁН</h2>
+      <div class="card final-card">
+        <p class="final-label">Ваш результат:</p>
+        <div id="final-score" class="final-score">0 из 10</div>
+        <div id="final-pct" class="final-pct">0%</div>
+      </div>
+      <p class="thanks">Спасибо за работу! ⚛</p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

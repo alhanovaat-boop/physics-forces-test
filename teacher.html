@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Панель преподавателя · Силы в механике</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="teacher-body">
+  <div id="warn-banner" class="warn" hidden>
+    ⚠ База данных не настроена. Вставьте SUPABASE_URL и SUPABASE_ANON_KEY в файл <b>config.js</b>.
+  </div>
+
+  <header class="t-header">
+    <h1 class="t-title">⚛ МКТ — ИНТЕРАКТИВНЫЙ ТЕСТ</h1>
+    <div class="t-topstats">
+      <div class="t-stat"><span class="t-num" id="t-students">0</span><span class="t-cap">Участники</span></div>
+      <div class="t-stat"><span class="t-num" id="t-answers">0</span><span class="t-cap">Ответов</span></div>
+      <div class="t-stat"><span class="t-num" id="t-avg">0%</span><span class="t-cap">Средний результат</span></div>
+    </div>
+  </header>
+
+  <main class="t-main">
+    <!-- РЕЖИМ ПОКАЗА -->
+    <section class="card t-card">
+      <h2 class="section-title">📽 РЕЖИМ ПОКАЗА (для проектора)</h2>
+      <div class="controls">
+        <button id="btn-present" class="btn btn-primary">ПОКАЗАТЬ СТАТИСТИКУ</button>
+        <button id="btn-prev-q" class="btn btn-ghost sm">◀ Назад</button>
+        <span id="present-q-num" class="present-num">Вопрос №1</span>
+        <button id="btn-next-q" class="btn btn-ghost sm">СЛЕДУЮЩИЙ ВОПРОС ▶</button>
+      </div>
+      <div id="present-area" class="present-area" hidden>
+        <div class="present-qnum" id="present-qnum-big">ВОПРОС №1</div>
+        <div id="present-question" class="present-question"></div>
+        <div id="present-stats" class="present-stats"></div>
+        <div id="present-count" class="present-count"></div>
+        <div id="present-correct" class="present-correct"></div>
+      </div>
+    </section>
+
+    <!-- СТАТИСТИКА В РЕАЛЬНОМ ВРЕМЕНИ -->
+    <section class="card t-card">
+      <h2 class="section-title">📊 СТАТИСТИКА В РЕАЛЬНОМ ВРЕМЕНИ <span id="live-dot" class="live">ожидание…</span></h2>
+      <div class="controls">
+        <button id="btn-refresh" class="btn btn-ghost">ОБНОВИТЬ СТАТИСТИКУ</button>
+        <button id="btn-clear" class="btn btn-danger">ОЧИСТИТЬ РЕЗУЛЬТАТЫ</button>
+      </div>
+      <div class="table-wrap">
+        <table class="stats-table" id="stats-table">
+          <thead><tr><th>№</th><th>А</th><th>Б</th><th>В</th><th>Г</th><th>Ответили</th></tr></thead>
+          <tbody id="stats-tbody"></tbody>
+        </table>
+      </div>
+      <div id="charts" class="charts"></div>
+    </section>
+
+    <!-- ИТОГИ -->
+    <section class="card t-card">
+      <h2 class="section-title">🏆 ИТОГИ ТЕСТА</h2>
+      <div class="finals">
+        <div class="final-item">Участников: <b id="f-students">0</b></div>
+        <div class="final-item">Средний результат: <b id="f-avg">0%</b></div>
+        <div class="final-item">Лучший результат: <b id="f-best">0/10</b></div>
+      </div>
+      <div id="per-question-correct" class="per-question"></div>
+    </section>
+
+    <!-- QR-КОД -->
+    <section class="card t-card qr-card" id="qr-print-area">
+      <h2 class="section-title">📱 QR-КОД ДЛЯ СТУДЕНТОВ</h2>
+      <div id="qrbox" class="qrbox"></div>
+      <p id="qr-url" class="qr-url"></p>
+      <p class="qr-hint">Отсканируйте QR-код камерой смартфона</p>
+      <p class="qr-hint">Введите своё имя или номер и начните тест</p>
+      <button id="btn-print" class="btn btn-ghost">ПЕЧАТЬ QR-КОДА</button>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="config.js"></script>
+  <script src="teacher.js"></script>
+</body>
+</html>
